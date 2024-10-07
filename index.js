@@ -55,13 +55,6 @@ var bg2 = {
     y: 40
 }
 
-// var bg3 = {
-//     width: 850,
-//     height: 380,
-//     x: 1700,
-//     y: 40
-// }
-
 var vg1 = {
     width: 850,
     height: 380,
@@ -75,15 +68,6 @@ var vg2 = {
     x: 550,
     y: 0
 }
-
-// var vg3 = {
-//     width: 850,
-//     height: 380,
-//     x: 1400,
-//     y: 0
-// }
-
-// ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
 // loading images 
 
@@ -168,7 +152,6 @@ function part2() {
             else horses[i].speed = 0;
         }
         horses[i].x += horses[i].speed;
-        // drawHorse(horses[i].x, horses[i].y, horses[i].id);
     }
 }
 
@@ -207,7 +190,6 @@ function updateDistances() {
 function updateBackground() {
     vg1.x += trackSpeed / 2.3;
     vg2.x += trackSpeed / 2.3;
-    // vg3.x -= 4;
 
     if (vg1.x + vg1.width <= 0) {
         vg1.x = vg2.x + vg2.width;
@@ -215,13 +197,9 @@ function updateBackground() {
     if (vg2.x + vg2.width <= 0) {
         vg2.x = vg1.x + vg1.width;
     }
-    // if (vg3.x + vg3.width <= 0) {
-    //     vg3.x = vg2.x + vg2.width;
-    // }
 
     bg1.x += trackSpeed;
     bg2.x += trackSpeed;
-    // bg3.x -= 8;
 
     if (bg1.x + bg1.width <= 0) {
         bg1.x = bg2.x + bg2.width;
@@ -229,14 +207,10 @@ function updateBackground() {
     if (bg2.x + bg2.width <= 0) {
         bg2.x = bg1.x + bg1.width;
     }
-    // if (bg3.x + bg3.width <= 0) {
-    //     bg3.x = bg2.x + bg2.width;
-    // }
 
     ctx.drawImage(bgImage, 0, CANVAS_HEIGHT * (5 / 6), 3000, 2000, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT * (5 / 6));
     ctx.drawImage(bgFront1, vg1.x, vg1.y, CANVAS_WIDTH, (500 / 480) * CANVAS_HEIGHT);
     ctx.drawImage(bgFront1, vg2.x, vg2.y, CANVAS_WIDTH, (500 / 480) * CANVAS_HEIGHT);
-    // ctx.drawImage(bgFront1, vg3.x, vg3.y, 850, 500);
     if (!gameEnd) {
         ctx.drawImage(bgFront, bg1.x, bg1.y, CANVAS_WIDTH, CANVAS_HEIGHT * (5.5 / 6));
         ctx.drawImage(bgFront, bg2.x, bg2.y, CANVAS_WIDTH, CANVAS_HEIGHT * (5.5 / 6));
@@ -257,46 +231,6 @@ function updateBackground() {
             ctx.drawImage(img, bg2.x, bg2.y, CANVAS_WIDTH, CANVAS_HEIGHT * (5.5 / 6));
         }
     }
-
-    // ctx.drawImage(progresBox, 0, 0, 425, 260, 325, 30, 200, 80);
-    // const x = 350;
-    // const y = 75;
-    // const w = 150;
-    // const h = 15;
-    // const r = 5;
-    // ctx.beginPath();
-    // ctx.strokeStyle = "blue";
-    // ctx.moveTo(x, y + r);
-    // ctx.quadraticCurveTo(x, y, x + r, y);
-    // ctx.lineTo(x + w - r, y);
-    // ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-    // ctx.lineTo(x + w, y + h - r);
-    // ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-    // ctx.lineTo(x + r, y + h);
-    // ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-    // ctx.lineTo(x, y + r);
-    // ctx.stroke();
-    // const elapsedTime = (currentTime - startTime) / 1000;
-    // const progress = Math.min((elapsedTime / raceDuration), 1);
-
-    // ctx.beginPath();
-    // ctx.strokeStyle = "blue";
-    // ctx.roundRect(x, y, w, h, r);
-    // ctx.stroke();
-    // ctx.closePath();
-
-    // ctx.beginPath();
-    // if (progress != 1)
-    //     ctx.roundRect(x, y, w * progress, h, [r, 0, 0, r]);
-    // else ctx.roundRect(x, y, w, h, [r]);
-    // ctx.closePath();
-    // ctx.fillStyle = "blue";
-    // ctx.fill();
-
-    // for (let i = 0; i < 5; i++) {
-    //     ctx.drawImage(nums, (i % 3) * 130, Math.floor((i / 3)) * 150, 130, 150, 340 + i * (36), 45, 26, 15);
-    // }
-
 
     const x = 0;
     const y = 0;
@@ -323,13 +257,6 @@ function updateBackground() {
     }
 }
 
-// function updateProgressBar() {
-//     const elapsedTime = currentTime - startTime;
-//     const progress = (elapsedTime / raceDuration) * 100;
-//     const winner = horses[0].id;
-//     ctx.fillRect(300, 40, 250, 100);
-// }
-
 function update() {
     currentTime = new Date();
     const elapsedTime = (currentTime - startTime) / 1000;
@@ -338,8 +265,6 @@ function update() {
         // console.log(fps);
     }
     horses.sort((a, b) => b.x - a.x);
-    // const deepCopyArray = JSON.parse(JSON.stringify(horses));
-    // console.log([elapsedTime, deepCopyArray]);
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     updateBackground();
 
@@ -366,8 +291,6 @@ function update() {
             window.alert(`The winner of the horse race is ${horses[0].id}`);
             return;
         }
-        // window.alert(`The winner of the horse race is ${horses[0].id}`);
-        // return;
     }
     horses.sort(function (a, b) { return a.id - b.id });
     for (let i = 0; i < horseCount; i++) {
@@ -375,9 +298,6 @@ function update() {
     }
 
     gameFrame++;
-    // ctx.drawImage(img, 0, 40, 850, 440);
-    // ctx.arc(710, 300, 2, 0, Math.PI * 2);
-    // ctx.stroke();
     window.requestAnimationFrame(update);
 }
 
